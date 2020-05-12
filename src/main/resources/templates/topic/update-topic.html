@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Modificar Tema</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div class="container my-5">
+		<h2 class="mb-5">Modificar Tema</h2>
+		<div class="row">
+			<div class="col-md-5">
+				<form action="#" th:object="${tsscTopic}"
+					th:action="@{/topic/edit/{id}(id=${tsscTopic.id})}" method="post">
+					<div class="row">
+
+						<div class="form-group col-md-6">
+							<label for="name" class="col-form-label">Nombre del Tema</label>
+							<input type="text" th:field="*{name}" class="form-control"
+								id="name" placeholder="201-MGP-Full"> <span
+								th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="text-danger"> </span>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="description" class="col-form-label">Descripcion
+								del Tema</label> <input type="text" th:field="*{description}"
+								class="form-control" id="description" placeholder="Description">
+							<span th:if="${#fields.hasErrors('description')}"
+								th:errors="*{description}" class="text-danger"> </span>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="defaultGroups" class="col-form-label">Numero
+								de grupos por defecto</label> <input type="number"
+								th:field="*{defaultGroups}" class="form-control"
+								id="defaultGroups" placeholder="defaultGroups"> <span
+								th:if="${#fields.hasErrors('defaultGroups')}"
+								th:errors="*{defaultGroups}" class="text-danger"> </span>
+
+						</div>
+						<div class="form-group col-md-6">
+							<label for="defaultSprints" class="col-form-label">Numero
+								de sprints por defecto</label> <input type="number"
+								th:field="*{defaultSprints}" class="form-control"
+								id="defaultSprints" placeholder="defaultSprints"> <span
+								th:if="${#fields.hasErrors('defaultSprints')}"
+								th:errors="*{defaultSprints}" class="text-danger"> </span>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="groupPrefix" class="col-form-label">Prefijo
+								para grupos </label> <input type="text" th:field="*{groupPrefix}"
+								class="form-control" id="groupPrefix" placeholder="Grupo">
+							<span th:if="${#fields.hasErrors('groupPrefix')}"
+								th:errors="*{groupPrefix}" class="text-danger"> </span>
+						</div>
+
+						<div class="col-md-4 mt-3">
+
+							<input type="hidden" class="btn btn-primary" value="">
+
+						</div>
+
+
+
+						<div class="col-md-4 mt-3">
+							<input type="submit" name="action" class="btn btn-primary"
+								value="Actualizar">
+						</div>
+
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary"
+								value="Cancelar">
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="2049" started-at="2020-03-18T15:33:28 COT" finished-at="2020-03-18T15:33:30 COT">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="2049" started-at="2020-03-18T15:33:28 COT" finished-at="2020-03-18T15:33:30 COT">
+      <class name="co.edu.icesi.fi.tics.tssc.test.TopicTest">
+        <test-method status="PASS" signature="initMocks()[pri:0, instance:co.edu.icesi.fi.tics.tssc.test.TopicTest@76a3e297]" name="initMocks" is-config="true" duration-ms="2015" started-at="2020-03-18T15:33:28 COT" finished-at="2020-03-18T15:33:30 COT">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initMocks -->
+      </class> <!-- co.edu.icesi.fi.tics.tssc.test.TopicTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
