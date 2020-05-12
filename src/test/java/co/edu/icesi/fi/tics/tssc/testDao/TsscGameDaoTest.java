@@ -31,7 +31,7 @@ import co.edu.icesi.fi.tics.tssc.model.TsscTimecontrol;
 
 @SpringBootTest(classes = TallerPersistenciaApplication.class)
 @RunWith(SpringRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+//@ContextConfiguration(locations = "classpath:applicationContext.xml")
 @Rollback(false)
 public class TsscGameDaoTest {
 
