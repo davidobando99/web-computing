@@ -3,15 +3,17 @@ package co.edu.icesi.fi.tics.tssc.delegates;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 
+@Component
 public class StoryDelegate implements IStoryDelegate{
 	
-	public final static String SERVER = "http://localhost:8080/";
+	public final static String SERVER = "http://localhost:8084/";
 	RestTemplate rest;
-	public StoryDelegate(RestTemplate rest) {
+	public StoryDelegate() {
 		rest = new RestTemplate();
 	}
 	@Override

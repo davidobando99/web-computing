@@ -24,7 +24,7 @@ public class GameRestController {
 		this.gameService = gameService;
 	}
 
-	@PostMapping("api/games")
+	@PostMapping("/games")
 	public TsscGame saveGame(TsscGame nuevo) {
 
 		try {
@@ -46,7 +46,7 @@ public class GameRestController {
 
 	}
 
-	@PostMapping("api/games/{id}")
+	@PostMapping("/games/{id}")
 	public TsscGame editGame(@PathVariable("id") long id) {
 
 		try {
@@ -59,18 +59,18 @@ public class GameRestController {
 		return null;
 	}
 
-	@GetMapping("api/games")
+	@GetMapping("/games")
 	public Iterable<TsscGame> findAll() {
 		return gameService.findAll();
 
 	}
 
-	@GetMapping("api/games/{id}")
+	@GetMapping("/games/{id}")
 	public TsscGame findById(@PathVariable("id") long id) {
 		return gameService.findById(id).get();
 	}
 
-	@DeleteMapping("api/games/{id}")
+	@DeleteMapping("/games/{id}")
 	public void deleteGame(@PathVariable("id") long id) {
 		gameService.delete(gameService.findById(id).get());
 	}

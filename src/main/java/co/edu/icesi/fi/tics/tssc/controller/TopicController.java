@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import co.edu.icesi.fi.tics.tssc.delegates.ITopicDelegate;
 import co.edu.icesi.fi.tics.tssc.exceptions.CapacityException;
 import co.edu.icesi.fi.tics.tssc.exceptions.SpringException;
 import co.edu.icesi.fi.tics.tssc.exceptions.TopicException;
@@ -23,16 +25,16 @@ import co.icesi.fi.tics.tssc.validations.ValidationTopic;
 @Controller
 public class TopicController {
 
-	private TopicService topicService;
+	private ITopicDelegate delegate;
 
 	@Autowired
-	public TopicController(TopicService topicService) {
-		this.topicService = topicService;
+	public TopicController(ITopicDelegate delegate) {
+		this.delegate = delegate;
 	}
 
 	@GetMapping("/topic/")
 	public String indexUser(Model model) {
-		model.addAttribute("topics", topicService.findAll());
+		model.addAttribute("topics", delegate.getTopics());
 		return "topic/index";
 	}
 
@@ -59,8 +61,10 @@ public class TopicController {
 			} else {
 
 				try {
-					topicService.saveTopic(tsscTopic);
-				} catch (TopicException | CapacityException | SpringException e) {
+					System.out.println("EL TOPIC ES "+tsscTopic.getName());
+					delegate.addTopic(tsscTopic);
+					
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -71,7 +75,7 @@ public class TopicController {
 
 		} else {
 
-			model.addAttribute("topics", topicService.findAll());
+			model.addAttribute("topics", delegate.getTopics());
 			return "topic/index";
 		}
 
@@ -81,9 +85,15 @@ public class TopicController {
 
 	@GetMapping("/topic/edit/{id}")
 	public String showUpdateForm(@PathVariable("id") long id, Model model) {
-		Optional<TsscTopic> tsscTopic = topicService.findById(id);
+		Optional<TsscTopic> tsscTopic = null;
+		try {
+			tsscTopic = Optional.of(delegate.getTopic(id));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		if (tsscTopic == null)
+		if (tsscTopic.get() == null)
 			throw new IllegalArgumentException("Invalid topic Id:" + id);
 
 		model.addAttribute("tsscTopic", tsscTopic.get());
@@ -119,8 +129,8 @@ public class TopicController {
 
 		if (action != null && !action.equals("Cancelar")) {
 			try {
-				topicService.saveTopic(tsscTopic);
-			} catch (TopicException | CapacityException | SpringException e) {
+				delegate.addTopic(tsscTopic);
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -131,9 +141,14 @@ public class TopicController {
 
 	@GetMapping("/topic/del/{id}")
 	public String deleteTopic(@PathVariable("id") long id) {
-		TsscTopic tsscTopic = topicService.findById(id)
-				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-		topicService.delete(tsscTopic);
+		TsscTopic tsscTopic = null;
+		try {
+			tsscTopic = delegate.getTopic(id);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		delegate.deleteTopic(tsscTopic);
 		return "redirect:/topic/";
 	}
 

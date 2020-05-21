@@ -3,15 +3,17 @@ package co.edu.icesi.fi.tics.tssc.delegates;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 
+@Component
 public class GameDelegate implements IGameDelegate{
 	
-	public final static String SERVER = "http://localhost:8080/";
+	public final static String SERVER = "http://localhost:8084/";
 	RestTemplate rest;
-	public GameDelegate(RestTemplate rest) {
+	public GameDelegate() {
 		rest = new RestTemplate();
 	}
 	@Override
