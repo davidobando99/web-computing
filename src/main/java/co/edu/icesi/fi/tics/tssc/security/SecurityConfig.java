@@ -28,11 +28,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 		 httpSecurity.formLogin().loginPage("/login").permitAll().and().authorizeRequests()
         .antMatchers("/index").permitAll()
+        .antMatchers("/api/**").permitAll()
         .antMatchers("/topics/**").permitAll()
 		.antMatchers("/game/", "/story/", "/game/**", "/story/**").hasAnyRole("admin", "superadmin")
 //		.antMatchers("/game/", "/story/", "/topic/","/game/**", "/story/**", "/topic/**").hasRole("superadmin")
 		.antMatchers("/topic/**").hasRole("superadmin")
-		.anyRequest().authenticated().and().httpBasic().and().logout().invalidateHttpSession(true)
+		.and().httpBasic().and().logout().invalidateHttpSession(true)
 		.clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/login?logout").permitAll().and().exceptionHandling()
 		.accessDeniedHandler(accessDeniedHandler);

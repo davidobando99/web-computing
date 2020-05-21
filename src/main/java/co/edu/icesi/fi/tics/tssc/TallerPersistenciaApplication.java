@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 import co.edu.icesi.fi.tics.tssc.model.TsscAdmin;
+import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
 import co.edu.icesi.fi.tics.tssc.services.AdminService;
+import co.edu.icesi.fi.tics.tssc.services.TopicService;
 
 @SpringBootApplication
 public class TallerPersistenciaApplication {
@@ -22,7 +24,7 @@ public class TallerPersistenciaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(AdminService adminService) {
+	public CommandLineRunner demo(AdminService adminService, TopicService topicService) {
 		return (args) -> {
 
 			// Agregar un usuario superadmin.
@@ -38,6 +40,15 @@ public class TallerPersistenciaApplication {
 			user2.setPassword("{noop}123");
 			user2.setSuperAdmin("admin");
 			adminService.save(user2);
+			
+			TsscTopic topic2 = new TsscTopic();
+			topic2.setName("Topic Prueba");
+			topic2.setDefaultGroups(5);
+			topic2.setDefaultSprints(5);
+			topic2.setDescription("Hola");
+			topic2.setGroupPrefix("15");
+			topicService.saveTopic(topic2);
+			
 
 		};
 

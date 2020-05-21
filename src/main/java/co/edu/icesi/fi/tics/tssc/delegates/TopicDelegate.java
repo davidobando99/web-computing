@@ -3,6 +3,7 @@ package co.edu.icesi.fi.tics.tssc.delegates;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -39,7 +40,10 @@ public class TopicDelegate implements ITopicDelegate{
 	}
 	@Override
 	public TsscTopic addTopic(TsscTopic newTopic) {
-		TsscTopic topic = rest.postForEntity(SERVER + "topics", newTopic, TsscTopic.class).getBody();
+		ResponseEntity<TsscTopic> rs = rest.postForEntity(SERVER + "api/topics/", newTopic, TsscTopic.class);
+		
+		TsscTopic topic = rs.getBody();
+		
 		if (topic == null) {
 			throw new IllegalArgumentException("topic is null");
 		}

@@ -27,11 +27,12 @@ public class TopicRestController {
 
 	}
 
-	@PostMapping("/topics")
-	public TsscTopic saveTopic(TsscTopic nuevo) {
+	@PostMapping("/api/topics/")
+	public TsscTopic saveTopic(@RequestBody TsscTopic nuevo) {
 
 		try {
-
+			
+		    System.out.println("RestController "+nuevo.getName());
 			return topicService.saveTopic(nuevo);
 
 		} catch (TopicException | CapacityException | SpringException e) {
@@ -57,7 +58,7 @@ public class TopicRestController {
 		return null;
 	}
 	
-	@GetMapping("/topics")
+	@GetMapping("/api/topics/")
 	public Iterable<TsscTopic> findAll(){
 		return topicService.findAll();		
 	}
