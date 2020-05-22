@@ -19,7 +19,7 @@ public class StoryDelegate implements IStoryDelegate{
 	@Override
 	public TsscStory getStory(long id) throws Exception{
 		// TODO Auto-generated method stub
-		TsscStory story = rest.getForObject(SERVER+ "stories/" +id, TsscStory.class);
+		TsscStory story = rest.getForObject(SERVER+ "api/stories/" +id, TsscStory.class);
 		if(story==null) {
 			throw new Exception("Story is null");
 		}
@@ -27,7 +27,7 @@ public class StoryDelegate implements IStoryDelegate{
 	}
 	@Override
 	public Iterable<TsscStory> getStories() {
-		TsscStory[] stories = rest.getForObject(SERVER+ "stories", TsscStory[].class);
+		TsscStory[] stories = rest.getForObject(SERVER+ "api/stories/", TsscStory[].class);
 		List<TsscStory> at;
 		try {
 			at = Arrays.asList(stories);
@@ -39,7 +39,7 @@ public class StoryDelegate implements IStoryDelegate{
 	}
 	@Override
 	public TsscStory addStory(TsscStory newStory) {
-		TsscStory story = rest.postForEntity(SERVER + "stories", newStory, TsscStory.class).getBody();
+		TsscStory story = rest.postForEntity(SERVER + "api/stories/", newStory, TsscStory.class).getBody();
 		if (story == null) {
 			throw new IllegalArgumentException("story is null");
 		}
@@ -50,7 +50,7 @@ public class StoryDelegate implements IStoryDelegate{
 		if (story == null) {
 			throw new IllegalArgumentException("story is null");
 		}
-		rest.delete(SERVER + "stories/" +story.getId());
+		rest.delete(SERVER + "api/stories/" +story.getId());
 		
 	}
 

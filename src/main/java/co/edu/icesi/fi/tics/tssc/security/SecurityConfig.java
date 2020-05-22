@@ -33,11 +33,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/game/", "/story/", "/game/**", "/story/**").hasAnyRole("admin", "superadmin")
 //		.antMatchers("/game/", "/story/", "/topic/","/game/**", "/story/**", "/topic/**").hasRole("superadmin")
 		.antMatchers("/topic/**").hasRole("superadmin")
-		.and().httpBasic().and().logout().invalidateHttpSession(true)
+		.anyRequest().authenticated().and().httpBasic().and().logout().invalidateHttpSession(true)
 		.clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 		.logoutSuccessUrl("/login?logout").permitAll().and().exceptionHandling()
 		.accessDeniedHandler(accessDeniedHandler);
-
 
 	}
 

@@ -1,17 +1,22 @@
 package co.edu.icesi.fi.tics.tssc;
 
+import java.util.ArrayList;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 
 import co.edu.icesi.fi.tics.tssc.model.TsscAdmin;
+import co.edu.icesi.fi.tics.tssc.model.TsscTimecontrol;
 import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
 import co.edu.icesi.fi.tics.tssc.services.AdminService;
 import co.edu.icesi.fi.tics.tssc.services.TopicService;
 
 @SpringBootApplication
+//@EnableWebMvc
 public class TallerPersistenciaApplication {
 
 	@Bean
@@ -41,15 +46,6 @@ public class TallerPersistenciaApplication {
 			user2.setSuperAdmin("admin");
 			adminService.save(user2);
 			
-			TsscTopic topic2 = new TsscTopic();
-			topic2.setName("Topic Prueba");
-			topic2.setDefaultGroups(5);
-			topic2.setDefaultSprints(5);
-			topic2.setDescription("Hola");
-			topic2.setGroupPrefix("15");
-			topicService.saveTopic(topic2);
-			
-
 		};
 
 	}

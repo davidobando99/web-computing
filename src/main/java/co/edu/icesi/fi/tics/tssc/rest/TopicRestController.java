@@ -28,7 +28,7 @@ public class TopicRestController {
 	}
 
 	@PostMapping("/api/topics/")
-	public TsscTopic saveTopic(@RequestBody TsscTopic nuevo) {
+	public TsscTopic saveTopic(TsscTopic nuevo) {
 
 		try {
 			
@@ -44,7 +44,7 @@ public class TopicRestController {
 		return null;
 	}
 	
-	@PostMapping("/topics/{id}")
+	@PostMapping("/api/topics/{id}")
 	public TsscTopic editTopic(@PathVariable("id") long id) {
 		
 		try {
@@ -63,12 +63,12 @@ public class TopicRestController {
 		return topicService.findAll();		
 	}
 	
-	@GetMapping("/topics/{id}")
+	@GetMapping("/api/topics/{id}")
 	public TsscTopic findById(@PathVariable("id") long id) {
 		return topicService.findById(id).get();		
 	}
 	
-	@DeleteMapping("/topics/{id}")
+	@DeleteMapping("/api/topics/{id}")
 	public void deleteTopic(@PathVariable("id") long id) {
 		
 		TsscTopic del = topicService.findById(id).get();

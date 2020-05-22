@@ -18,7 +18,7 @@ public class GameDelegate implements IGameDelegate{
 	}
 	@Override
 	public TsscGame getGame(long id) throws Exception {
-		TsscGame game = rest.getForObject(SERVER+ "games/" +id, TsscGame.class);
+		TsscGame game = rest.getForObject(SERVER+ "api/games/" +id, TsscGame.class);
 		if(game==null) {
 			throw new Exception("game is null");
 		}
@@ -26,7 +26,7 @@ public class GameDelegate implements IGameDelegate{
 	}
 	@Override
 	public Iterable<TsscGame> getGames() {
-		TsscGame[] games = rest.getForObject(SERVER+ "games", TsscGame[].class);
+		TsscGame[] games = rest.getForObject(SERVER+ "api/games/", TsscGame[].class);
 		List<TsscGame> at;
 		try {
 			at = Arrays.asList(games);
@@ -39,7 +39,7 @@ public class GameDelegate implements IGameDelegate{
 	}
 	@Override
 	public TsscGame addGame(TsscGame newGame) {
-		TsscGame game = rest.postForEntity(SERVER + "games", newGame, TsscGame.class).getBody();
+		TsscGame game = rest.postForEntity(SERVER + "api/games/", newGame, TsscGame.class).getBody();
 		if (game == null) {
 			throw new IllegalArgumentException("Game is null");
 		}
@@ -50,7 +50,7 @@ public class GameDelegate implements IGameDelegate{
 		if (game == null) {
 			throw new IllegalArgumentException("Game is null");
 		}
-		rest.delete(SERVER + "games/" +game.getId());
+		rest.delete(SERVER + "api/games/" +game.getId());
 		
 		
 	}

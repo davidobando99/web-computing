@@ -25,7 +25,7 @@ public class StoryRestController {
 		this.storyService = storyService;
 	}
 
-	@PostMapping("/stories")
+	@PostMapping("/api/stories/")
 	public TsscStory saveStory(TsscStory nuevo) {
 
 		try {
@@ -39,7 +39,7 @@ public class StoryRestController {
 		return null;
 	}
 
-	@PostMapping("/stories/{id}")
+	@PostMapping("/api/stories/{id}")
 	public TsscStory editStory(@PathVariable("id") long id) {
 
 		TsscStory edited = storyService.findById(id).get();
@@ -55,7 +55,7 @@ public class StoryRestController {
 
 	}
 	
-	@GetMapping("/stories")
+	@GetMapping("/api/stories/")
 	public Iterable<TsscStory> findAll(){		
 		return storyService.findAll();		
 	}
@@ -65,7 +65,7 @@ public class StoryRestController {
 		return storyService.findById(id).get();
 	}
 	
-	@DeleteMapping("/stories/{id}")
+	@DeleteMapping("/api/stories/{id}")
 	public void deleteStory(@PathVariable("id") long id) {
 		storyService.delete(storyService.findById(id).get());
 		

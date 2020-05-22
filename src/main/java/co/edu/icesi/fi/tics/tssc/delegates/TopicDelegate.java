@@ -18,17 +18,19 @@ public class TopicDelegate implements ITopicDelegate{
 	public TopicDelegate() {
 		rest = new RestTemplate();
 	}
+	
 	@Override
 	public TsscTopic getTopic(long id) throws Exception{
-		TsscTopic topic = rest.getForObject(SERVER+ "topics/" +id, TsscTopic.class);
+		TsscTopic topic = rest.getForObject(SERVER+ "api/topics/" +id, TsscTopic.class);
 		if(topic==null) {
 			throw new Exception("topic is null");
 		}
 		return topic;
 	}
+	
 	@Override
 	public Iterable<TsscTopic> getTopics() {
-		TsscTopic[] topics = rest.getForObject(SERVER+ "topics", TsscTopic[].class);
+		TsscTopic[] topics = rest.getForObject(SERVER+ "api/topics/", TsscTopic[].class);
 		List<TsscTopic> at;
 		try {
 			at = Arrays.asList(topics);
@@ -38,6 +40,7 @@ public class TopicDelegate implements ITopicDelegate{
 			return null;
 		}
 	}
+	
 	@Override
 	public TsscTopic addTopic(TsscTopic newTopic) {
 		ResponseEntity<TsscTopic> rs = rest.postForEntity(SERVER + "api/topics/", newTopic, TsscTopic.class);
@@ -54,7 +57,7 @@ public class TopicDelegate implements ITopicDelegate{
 		if (topic == null) {
 			throw new IllegalArgumentException("topic is null");
 		}
-		rest.delete(SERVER + "topics/" +topic.getId());
+		rest.delete(SERVER + "api/topics/" +topic.getId());
 		
 	}
 
