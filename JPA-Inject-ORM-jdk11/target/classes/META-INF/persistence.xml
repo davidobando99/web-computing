@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="demoJPA-Inject" transaction-type="RESOURCE_LOCAL">
+		<class>co.edu.icesi.demo.model.TAlumno</class>
+		<class>co.edu.icesi.demo.model.TCarrera</class>
+		<class>co.edu.icesi.demo.model.TCohorte</class>
+		<class>co.edu.icesi.demo.model.TCohortePK</class>
+		<class>co.edu.icesi.demo.model.TCurso</class>
+		<class>co.edu.icesi.demo.model.TCursoPK</class>
+		<class>co.edu.icesi.demo.model.TFacultad</class>
+		<class>co.edu.icesi.demo.model.THorarioCurso</class>
+		<class>co.edu.icesi.demo.model.THorarioCursoPK</class>
+		<class>co.edu.icesi.demo.model.TMateria</class>
+		<class>co.edu.icesi.demo.model.TMatxaprobar</class>
+		<class>co.edu.icesi.demo.model.TMatxaprobarPK</class>
+		<class>co.edu.icesi.demo.model.TMatxprograma</class>
+		<class>co.edu.icesi.demo.model.TMatxprogramaPK</class>
+		<class>co.edu.icesi.demo.model.TProfesore</class>
+		<class>co.edu.icesi.demo.model.TProgAlumno</class>
+		<class>co.edu.icesi.demo.model.TProgAlumnoPK</class>
+		<class>co.edu.icesi.demo.model.TPrograma</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/pg_estud"/>
+			<property name="javax.persistence.jdbc.user" value="postgres"/>
+			<property name="javax.persistence.jdbc.password" value="postgres"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+			
+		</properties>
+	</persistence-unit>
+</persistence>

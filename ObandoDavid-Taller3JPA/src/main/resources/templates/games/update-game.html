@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Mofidicar Juego</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div class="container my-5">
+		<h2 class="mb-5">Modificar Juego</h2>
+		<div class="row">
+			<div class="col-md-5">
+				<form action="#" th:object="${tsscGame}"
+					th:action="@{/games/edit/{id}(id=${tsscGame.id})}" method="post">
+					<div class="row">
+						<div class="form-row">
+						
+
+							<div class="form-group col-md-6">
+								<label for="name" class="col-form-label">Nombre del Juego</label> <input
+									type="text" th:field="*{name}" class="form-control"
+									id="name" placeholder="Name"> <span
+									th:if="${#fields.hasErrors('name')}"
+									th:errors="*{name}" class="text-danger"> </span>
+							</div>
+
+
+							<div class="form-group col-md-6">
+								<label for="adminPassword" class="col-form-label">Contraseña admin</label> <input
+									type="text" th:field="*{adminPassword}" class="form-control"
+									id="adminPassword" placeholder="Password"> <span
+									th:if="${#fields.hasErrors('AdminPassword')}"
+									th:errors="*{adminPassword}" class="text-danger"> </span>
+							</div>
+						</div>
+							
+							<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="scheduledDate" class="col-form-label">Fecha</label> <input
+									type="date" th:field="*{scheduledDate}" class="form-control"
+									id="scheduledDate" placeholder="yyyy-mm-dd"> <span
+									th:if="${#fields.hasErrors('scheduledDate')}"
+									th:errors="*{scheduledDate}" class="text-danger"> </span>
+							</div>
+							
+							<div class="form-group col-md-4">
+								<label for="scheduledTime" class="col-form-label">Hora</label> <input
+									type="time" th:field="*{scheduledTime}" class="form-control"
+									id="scheduledTime" placeholder="1"> <span
+									th:if="${#fields.hasErrors('scheduledTime')}"
+									th:errors="*{scheduledTime}" class="text-danger"> </span>
+							</div>
+							</div>
+							<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="nGroups" class="col-form-label">Cantidad de grupos</label> <input
+									type="text" th:field="*{nGroups}" class="form-control"
+									id="nGroups" placeholder="#"> <span
+									th:if="${#fields.hasErrors('nGroups')}"
+									th:errors="*{nGroups}" class="text-danger"> </span>
+							</div>
+							
+							<div class="form-group col-md-6">
+								<label for="nSprints" class="col-form-label">Cantidad de sprints</label> <input
+									type="text" th:field="*{nSprints}" class="form-control"
+									id="nSprints" placeholder="#"> <span
+									th:if="${#fields.hasErrors('nSprints')}"
+									th:errors="*{nSprints}" class="text-danger"> </span>
+							</div>
+
+
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="userPassword" class="col-form-label">Contraseña usuario</label> <input
+									type="text" th:field="*{userPassword}" class="form-control"
+									id="userPassword" placeholder="password"> <span
+									th:if="${#fields.hasErrors('userPassword')}"
+									th:errors="*{userPassword}" class="text-danger"> </span>
+							</div>
+							
+							<div class="form-group col-md-6">
+								<label for="guestPassword" class="col-form-label">Contraseña observador</label> <input
+									type="text" th:field="*{guestPassword}" class="form-control"
+									id="guestPassword" placeholder="password"> <span
+									th:if="${#fields.hasErrors('guestPassword')}"
+									th:errors="*{guestPassword}" class="text-danger"> </span>
+							</div>
+
+
+						</div>
+						
+						<div class="form-col">
+						<div class="form-group col-md-9">
+							<label for="tsscTopic" class="col-form-label">Tema</label> <select
+								class="form-control-range" th:field="*{tsscTopic}">
+								<option th:value="null">Ningun Tema</option>
+								<option th:each="top : ${topics}" th:value="${top.id}"
+									class="form-control" th:text="${top.name}"
+									th:selected="${tsscGame.tsscTopic=top}"></option>
+							</select> <span th:if="${#fields.hasErrors('tsscTopic')}"
+								th:errors="*{tsscTopic}"> </span>
+
+						</div>
+						</div>
+						
+					</div>
+					<div class="row">
+						<div class="col-md-4 mt-3">
+							<input type="submit" name="action" class="btn btn-primary"
+								value="Update Game">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="reset" class="btn btn-secondary" value="Clear">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary"
+								value="Cancel">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

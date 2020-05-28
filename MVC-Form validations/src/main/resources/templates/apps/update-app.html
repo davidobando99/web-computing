@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Update User</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div class="container my-5">
+		<h2 class="mb-5">Update Appointment</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<form action="#" th:object="${app}"
+					th:action="@{/apps/edit/{id}(id=${app.id})}" method="post">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<label for="date" class="col-form-label">Date</label> <input
+								type="date" th:field="*{date}" class="form-control" id="date"
+								placeholder="Date"> 
+						</div>
+						<div class="form-group col-md-6">
+							<label for="time" class="col-form-label">Time</label> <input
+								type="text" th:field="*{time}" class="form-control" id="time"
+								placeholder="9">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="patient" class="col-form-label">Patient</label> <select
+								th:field="*{patient}">
+								<option th:each="pat : ${patients}" th:value="${pat.id}"
+									class="form-control" th:text="${pat.name}"
+									th:selected="${app.patient=pat}"></option>
+							</select>
+						</div>
+						<div class="form-group col-md-6">
+							<label for="doctor" class="col-form-label">Doctor</label> <select
+								th:field="*{doctor}">
+								<option th:each="doc : ${doctors}" th:value="${doc.id}"
+									class="form-control" th:text="${doc.name}"
+									th:selected="${app.doctor=doc}"></option>
+							</select> 
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 mt-3">
+							<input type="submit" name="action" class="btn btn-primary"
+								value="Update Appointment">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="reset" class="btn btn-secondary" value="Clear">
+						</div>
+						<div class="col-md-3 mt-3">
+							<input type="submit" name="action" class="btn btn-secondary"
+								value="Cancel">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

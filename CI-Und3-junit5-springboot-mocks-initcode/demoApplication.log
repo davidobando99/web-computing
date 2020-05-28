@@ -1,0 +1,8 @@
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> SETUP <-----
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> DESTROY <-----
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> SETUP <-----
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> DESTROY <-----
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> SETUP <-----
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> DESTROY <-----
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> SETUP <-----
+[main] INFO  com.areyes1.jgc.junit.spring.JUnitSpringExample  - -----> DESTROY <-----

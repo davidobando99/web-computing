@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Gestión de juegos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="../css/shards.min.css">
+</head>
+<body>
+	<div th:switch="${games}" class="container my-5">
+		<div class="row">
+			<div class="col-md-10">
+				<div th:case="null">
+				<h2 >No topics yet!</h2>
+				</div>
+				<div th:case="*">
+					<h2 class="my-5">Juegos</h2>
+					<table class="table table-striped table-responsive-md">
+						<thead>
+							<tr>
+							    <th>Nombre</th>
+							    <th>Fecha</th>
+							    <th>Hora</th>
+								<th>Grupos</th>
+								<th>Sprints</th>
+								<th>Editar</th>
+								<th>Borrar</th>
+								<th>Ver Historias</th>
+								<th>Editar Tema</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="game : ${games}">
+							    <td class="text-info" th:text="${game.name}"></td>
+							    <td class="text-info" th:text="${game.scheduledDate}"></td>
+							    <td class="text-info" th:text="${game.scheduledTime}"></td>
+								<td class="text-info" th:text="${game.nGroups}"></td>
+								<td class="text-info" th:text="${game.nSprints}"></td>
+							
+								<td><a th:href="@{/games/edit/{id}(id=${game.id})}"
+									class="btn btn-primary"><i class="fas fa-edit"></i></a></td>
+								<td><a th:href="@{/games/del/{id}(id=${game.id})}"
+									class="btn btn-primary"><i class="fas fa-trash-alt"></i></a></td>
+								<td><a th:href="@{/games/stories/{id}(id=${game.id})}"
+									class="btn btn-primary"><i class="fas fa-brush"></i></a>
+			
+									</td>
+								<td><span th:if=${game.tsscTopic!=null}><a th:href="@{/topics/edit/{id}(id=${game.tsscTopic.id})}"
+									class="btn btn-primary"><i class="fas fa-brush"></i></a></span>
+									<span th:if=${game.tsscTopic==null}>JUEGO SIN TEMA</span>
+									</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="my-5">
+					<a href="/games/add" class="btn btn-primary"><i
+						class="fas fa-user-plus ml-2"></i></a>
+				</p>
+				
+			</div>
+		</div>
+		<a href="/"><i class="fas fa-home ml-2"></i>Go back to main</a>
+	</div>
+</body>
+</html>
